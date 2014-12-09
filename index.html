@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Uložení dat před ochodem pomocí <code>navigator.sendBeacon</code></title>
+
+	<script>
+	window.addEventListener('unload', log);
+
+	function log() {
+		navigator.sendBeacon(
+			"ulozit.php", 
+			JSON.stringify(
+				{'data': document.getElementById("data").value}
+			)
+		);
+	}
+	</script>
+</head>
+<body>
+
+	<h1>Uložení dat před ochodem pomocí <code>navigator.sendBeacon</code></h1>
+
+	<input type="text" id="data" value="něco" />
+
+	<ul>
+		<li><a href="http://jecas.cz">Odkaz na jecas.cz</a></li>
+		<li><a href="?smeti">Odkaz na tuto stranku</a></li>
+		<li><a href="?smeti2">Odkaz na tuto stranku</a></li>
+		<li><a href="?smeti3">Odkaz na tuto stranku</a></li>
+	</ul>
+
+	<button onclick="log()">Uložit log</button>
+</body>
+</html>
